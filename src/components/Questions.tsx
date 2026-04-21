@@ -1,4 +1,6 @@
-const Questions = ({ question, selectedAnswer, dispatch }: any) => {
+import { useQuiz } from "../context/QuizContext";
+
+const Questions = () => {
   // const { options } = question;
 
   // const handleSelect = (index: number) => {
@@ -9,9 +11,9 @@ const Questions = ({ question, selectedAnswer, dispatch }: any) => {
   //     setScore((prev: number) => prev + question.points);
   //   }
   // };
-
+  const { questions, questionIndex, selectedAnswer, dispatch } = useQuiz();
   const optionLabels = ["A", "B", "C", "D"];
-
+  const question = questions[questionIndex];
   return (
     <div className="w-full">
       <h2 className="question-text mb-7">{question?.question}</h2>

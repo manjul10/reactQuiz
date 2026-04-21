@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useQuiz } from "../context/QuizContext";
 
-const Timer = ({ length, setGameOver }) => {
+const Timer = () => {
+  const { length, dispatch } = useQuiz();
   const secPerQuestion = 30;
 
   const [secondsLefts, setSecondsLeft] = useState(secPerQuestion * length);
@@ -8,7 +10,8 @@ const Timer = ({ length, setGameOver }) => {
 
   useEffect(() => {
     if (secondsLefts <= 0) {
-      setGameOver(true);
+      dispatch({ type: "reset" });
+      // setGameOver(true);
       return;
     }
     const id = setInterval(() => {
